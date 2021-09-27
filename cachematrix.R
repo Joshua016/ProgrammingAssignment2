@@ -9,10 +9,10 @@
 
 library(MASS)
 makeCacheMatrix <- function(x = matrix()){
-  inv <- NULL
+  iv <- NULL
   set <- function(y){
           x <<- y
-          inv <<- NULL
+          iv <<- NULL
                       }
   get <- function() {x}                    ## the function used to get the x matrix
   setinv<-function(inverse)inv<<-inverse
@@ -27,13 +27,13 @@ makeCacheMatrix <- function(x = matrix()){
 ## this is used to obtain cached data
 
 cacheSolve <- function(x, ...){
-  inv <- x$getinv()
-  if(!is.null(inv)){
+  iv <- x$getinv()
+  if(!is.null(iv)){
                 message("getting cached data")     ## checked the inverse if it is null
-                return(inv)                        ## the function to return the inverse value
+                return(iv)                        ## the function to return the inverse value
   }
         mat <- x$get()
-        inv <-solve(mat, ...)                     ## solve the inverse value
-        x$setinv(inv)
-        inv
+        iv <-solve(mat, ...)                     ## solve the inverse value
+        x$setinv(iv)
+        iv
 }
